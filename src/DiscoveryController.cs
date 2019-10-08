@@ -75,9 +75,8 @@ static class DiscoveryController
 		SwinGame.DrawText (GameController.HumanPlayer.Hits.ToString (), Color.White, GameResources.GameFont ("Menu"), SCORES_LEFT, HITS_TOP);
 		SwinGame.DrawText (GameController.HumanPlayer.Missed.ToString (), Color.White, GameResources.GameFont ("Menu"), SCORES_LEFT, SPLASH_TOP);
 	}
-	}
-
 }
+
 
 //=======================================================
 //Service provided by Telerik (www.telerik.com)
