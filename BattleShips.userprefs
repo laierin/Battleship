@@ -7,7 +7,7 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="src\GameResources.cs">
     <Files>
       <File FileName="src\GameState.cs" Line="6" Column="1" />
-      <File FileName="src\GameResources.cs" Line="6" Column="8" />
+      <File FileName="src\GameResources.cs" Line="5" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.BattleShips PreferredExecutionTarget="MonoDevelop.Default" />
