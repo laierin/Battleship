@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using SwinGameSDK;
 
+//add swinGameSDK.
 /// <summary>
 /// This includes a number of utility methods for
 /// drawing and interacting with the Mouse.
@@ -134,7 +135,8 @@ static class UtilityFunctions
 
 				draw = true;
 
-				switch (grid [row, col]) {
+				//gird use indexer not functioncall
+				switch (grid [row,col]) {
 					//If small Then fillColor = _SMALL_SHIP Else fillColor = _LARGE_SHIP
 					case TileView.Miss:
 						if (small)

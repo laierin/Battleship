@@ -21,6 +21,7 @@ static class DiscoveryController
 	/// </remarks>
 	public static void HandleDiscoveryInput()
 	{
+		//use class name call the function and correct keycode name
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
@@ -35,6 +36,7 @@ static class DiscoveryController
 	/// </summary>
 	private static void DoAttack()
 	{
+		//use class name call the function and variable-- remark
 		Point2D mouse = default(Point2D);
 
 		mouse = SwinGame.MousePosition();
@@ -61,6 +63,8 @@ static class DiscoveryController
 		const int SHOTS_TOP = 157;
 		const int HITS_TOP = 206;
 		const int SPLASH_TOP = 256;
+
+		//use class name call the function and keycode name
 
 		if ((SwinGame.KeyDown (KeyCode.vk_LSHIFT) | SwinGame.KeyDown (KeyCode.vk_RSHIFT)) & SwinGame.KeyDown (KeyCode.vk_c)) {
 			UtilityFunctions.DrawField (GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
