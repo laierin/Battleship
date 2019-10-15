@@ -44,6 +44,12 @@ static class UtilityFunctions
 	public const int ANIMATION_CELLS = 7;
 
 	public const int FRAMES_PER_CELL = 8;
+
+	//create timer
+	private static Timer gameTime = SwinGame.CreateTimer ();
+	//check timer state
+	private static bool startedTimer = false;
+
 	/// <summary>
 	/// Determines if the mouse is in a given rectangle.
 	/// </summary>
@@ -215,11 +221,49 @@ static class UtilityFunctions
 		set { _message = value; }
 	}
 
+
+	/// <summary>
+	/// Gets or sets the game time.
+	/// </summary>
+	/// <value>The game time.</value>
+	public static Timer GameTime {
+		get {
+			return gameTime;
+		}
+
+		set {
+			gameTime = value;
+		}
+	}
+
+	/// <summary>
+	/// Gets or sets a value indicating whether this <see cref="T:UtilityFunctions"/> started timer.
+	/// </summary>
+	/// <value><c>true</c> if started timer; otherwise, <c>false</c>.</value>
+	public static bool StartedTimer {
+		get {
+			return startedTimer;
+		}
+
+		set {
+			startedTimer = value;
+		}
+	}
+
 	/// <summary>
 	/// Draws the message to the screen
 	/// </summary>
 	public static void DrawMessage()
 	{
+
+		//start the timer
+		if (UtilityFunctions.startedTimer == false) {
+			UtilityFunctions.gameTime.Start ();
+			UtilityFunctions.startedTimer = true;
+		}
+
+		//Draw timer on screen
+		SwinGame.DrawText ("Time :" + TimeSpan.FromSeconds (gameTime.Ticks / 20).ToString (), Color.White, GameResources.GameFont ("Menu"), 700, 50);
 		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
 	}
 
