@@ -17,6 +17,9 @@ public class Player : IEnumerable<Ship>
 	private SeaGrid _playerGrid;
 	private ISeaGrid _enemyGrid;
 
+	//check for surrender
+	private bool _isSurrender;
+
 	protected BattleShipsGame _game;
 	private int _shots;
 	private int _hits;
@@ -125,6 +128,16 @@ public class Player : IEnumerable<Ship>
 			} else {
 				return (Hits * 12) - Shots - (PlayerGrid.ShipsKilled * 20);
 			}
+		}
+	}
+
+	public bool IsSurrender {
+		get {
+			return _isSurrender;
+		}
+
+		set {
+			_isSurrender = value;
 		}
 	}
 

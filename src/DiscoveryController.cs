@@ -64,9 +64,17 @@ static class DiscoveryController
 		const int HITS_TOP = 206;
 		const int SPLASH_TOP = 256;
 
-
+		//Draw whiteflag
+		SwinGame.DrawBitmap (GameResources.GameImage ("Whiteflag"), 650, 70);
+		//Draw whiteflag outline
+		SwinGame.DrawRectangle (Color.Yellow, 650, 70, 51, 46);
+		//check if player click surrender
+		if (UtilityFunctions.IsMouseInRectangle (650, 70, 51, 46) & SwinGame.MouseClicked (MouseButton.LeftButton)) {
+			GameController.HumanPlayer.IsSurrender = true;
+			GameController.EndCurrentState ();
+			GameController.AddNewState (GameState.EndingGame);
+		}
 		//use class name call the function and keycode name
-
 		if ((SwinGame.KeyDown (KeyCode.vk_LSHIFT) | SwinGame.KeyDown (KeyCode.vk_RSHIFT)) & SwinGame.KeyDown (KeyCode.vk_c)) {
 			UtilityFunctions.DrawField (GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
 		} else {
