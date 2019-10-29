@@ -277,8 +277,10 @@ public static class GameController
 		if (SwinGame.KeyDown (KeyCode.vk_p)) {
 			if (_isPaused == false) {
 				_isPaused = true;
+				UtilityFunctions.GameTime.Pause();
 			} else {
 				_isPaused = false;
+				UtilityFunctions.GameTime.Resume ();
 			}
 		}
 
