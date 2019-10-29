@@ -7,6 +7,7 @@ using SwinGameSDK;
 using System.Diagnostics;
 static class GameLogic
 {
+	private static bool _isPaused = false;
 	public static void Main ()
 	{
 		//Opens a new Graphics Window
@@ -17,10 +18,19 @@ static class GameLogic
 
 		SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
 
+		//use p to activate pause to stop userinput
+		if (SwinGame.KeyDown (KeyCode.vk_p) & _isPaused == false) {
+			_isPaused = true;
+		} else if (SwinGame.KeyDown (KeyCode.vk_p) & _isPaused == true) {
+			_isPaused = false;
+		}
+
 		//Game Loop
 		do {
-			GameController.HandleUserInput ();
-			GameController.DrawScreen ();
+			if (_isPaused != true) {
+				GameController.HandleUserInput ();
+				GameController.DrawScreen ();
+			}
 		} while (!(SwinGame.WindowCloseRequested () == true | GameController.CurrentState == GameState.Quitting));
 
 		SwinGame.StopMusic ();

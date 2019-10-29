@@ -11,6 +11,8 @@ using SwinGameSDK;
 /// </summary>
 static class DiscoveryController
 {
+	//check user pauseStatus
+
 
 	/// <summary>
 	/// Handles input during the discovery phase of the game.
@@ -21,6 +23,7 @@ static class DiscoveryController
 	/// </remarks>
 	public static void HandleDiscoveryInput()
 	{
+		
 		//use class name call the function and correct keycode name
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
