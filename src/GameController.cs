@@ -274,7 +274,7 @@ public static class GameController
 		SwinGame.ProcessEvents();
 
 		//use p to activate pause to stop userinput
-		if (SwinGame.KeyDown (KeyCode.vk_p)) {
+		if (SwinGame.KeyTyped (KeyCode.vk_p)) {
 			if (_isPaused == false) {
 				_isPaused = true;
 				UtilityFunctions.GameTime.Pause();

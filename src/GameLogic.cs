@@ -7,7 +7,8 @@ using SwinGameSDK;
 using System.Diagnostics;
 static class GameLogic
 {
-	
+	public static bool _muted = false;
+
 	public static void Main ()
 	{
 		//Opens a new Graphics Window
@@ -22,6 +23,18 @@ static class GameLogic
 
 		//Game Loop
 		do {
+			//mute_sound
+			if (SwinGame.KeyTyped (KeyCode.vk_m)) {
+				if (_muted == true) {
+					Audio.OpenAudio ();
+					SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
+					_muted = false;
+				} else {
+					Audio.CloseAudio ();
+					_muted = true;
+				}
+			}
+
 				GameController.HandleUserInput ();
 				GameController.DrawScreen ();
 		} while (!(SwinGame.WindowCloseRequested () == true | GameController.CurrentState == GameState.Quitting));
