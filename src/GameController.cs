@@ -51,6 +51,16 @@ public static class GameController
 		get { return _ai; }
 	}
 
+	public static AIOption AiSetting {
+		get {
+			return _aiSetting;
+		}
+
+		set {
+			_aiSetting = value;
+		}
+	}
+
 	static GameController()
 	{
 		//bottom state will be quitting. If player exits main menu then the game is over
@@ -75,7 +85,7 @@ public static class GameController
 		_theGame = new BattleShipsGame();
 
 		//create the players
-		switch (_aiSetting) {
+		switch (AiSetting) {
 			case AIOption.Medium:
 				_ai = new AIMediumPlayer(_theGame);
 				break;
@@ -389,7 +399,7 @@ public static class GameController
 	/// <param name="setting">the new difficulty level</param>
 	public static void SetDifficulty(AIOption setting)
 	{
-		_aiSetting = setting;
+		AiSetting = setting;
 	}
 
 }

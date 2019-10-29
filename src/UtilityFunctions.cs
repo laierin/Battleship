@@ -264,6 +264,14 @@ static class UtilityFunctions
 
 		//Draw timer on screen
 		SwinGame.DrawText ("Time :" + TimeSpan.FromSeconds (gameTime.Ticks / 20).ToString (), Color.White, GameResources.GameFont ("Menu"), 700, 50);
+
+		//draw the mode on top
+		switch (GameController.AiSetting) {
+		case AIOption.Easy: SwinGame.DrawText ("Easy BIRD MODE", Color.White, GameResources.GameFont ("Menu"), 400, 50); break;
+		case AIOption.Medium: SwinGame.DrawText ("Normal BIRD MODE", Color.White, GameResources.GameFont ("Menu"), 400, 50); break;
+		default: SwinGame.DrawText ("Hard BIRD MODE", Color.White, GameResources.GameFont ("Menu"), 400, 50); break;
+		}
+
 		SwinGame.DrawText(Message, MESSAGE_COLOR, GameResources.GameFont("Courier"), FIELD_LEFT, MESSAGE_TOP);
 	}
 
