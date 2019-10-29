@@ -13,7 +13,8 @@ using SwinGameSDK;
 /// </summary>
 public static class GameController
 {
-
+	//check pause
+	private static bool _isPaused = false;
 	private static BattleShipsGame _theGame;
 	private static Player _human;
 
@@ -272,31 +273,42 @@ public static class GameController
 		//Read incoming input events
 		SwinGame.ProcessEvents();
 
-		switch (CurrentState) {
-			case GameState.ViewingMainMenu:
-			MenuController.HandleMainMenuInput();
-				break;
-			case GameState.ViewingGameMenu:
-			MenuController.HandleGameMenuInput();
-				break;
-			case GameState.AlteringSettings:
-			MenuController.HandleSetupMenuInput();
-				break;
-			case GameState.Deploying:
-			DeploymentController.HandleDeploymentInput();
-				break;
-			case GameState.Discovering:
-			DiscoveryController.HandleDiscoveryInput();
-				break;
-			case GameState.EndingGame:
-			EndingGameController.HandleEndOfGameInput();
-				break;
-			case GameState.ViewingHighScores:
-			HighScoreController.HandleHighScoreInput();
-				break;
+		//use p to activate pause to stop userinput
+		if (SwinGame.KeyDown (KeyCode.vk_p)) {
+			if (_isPaused == false) {
+				_isPaused = true;
+			} else {
+				_isPaused = false;
+			}
 		}
 
-		UtilityFunctions.UpdateAnimations();
+		if (_isPaused == false) {
+			switch (CurrentState) {
+			case GameState.ViewingMainMenu:
+				MenuController.HandleMainMenuInput ();
+				break;
+			case GameState.ViewingGameMenu:
+				MenuController.HandleGameMenuInput ();
+				break;
+			case GameState.AlteringSettings:
+				MenuController.HandleSetupMenuInput ();
+				break;
+			case GameState.Deploying:
+				DeploymentController.HandleDeploymentInput ();
+				break;
+			case GameState.Discovering:
+				DiscoveryController.HandleDiscoveryInput ();
+				break;
+			case GameState.EndingGame:
+				EndingGameController.HandleEndOfGameInput ();
+				break;
+			case GameState.ViewingHighScores:
+				HighScoreController.HandleHighScoreInput ();
+				break;
+			}
+
+			UtilityFunctions.UpdateAnimations();
+		}
 	}
 
 
@@ -309,34 +321,35 @@ public static class GameController
 	public static void DrawScreen()
 	{
 		UtilityFunctions.DrawBackground();
+		if (_isPaused == false) {
+			switch (CurrentState) {
+			case GameState.ViewingMainMenu:
+				MenuController.DrawMainMenu ();
+				break;
+			case GameState.ViewingGameMenu:
+				MenuController.DrawGameMenu ();
+				break;
+			case GameState.AlteringSettings:
+				MenuController.DrawSettings ();
+				break;
+			case GameState.Deploying:
+				DeploymentController.DrawDeployment ();
+				break;
+			case GameState.Discovering:
+				DiscoveryController.DrawDiscovery ();
+				break;
+			case GameState.EndingGame:
+				EndingGameController.DrawEndOfGame ();
+				break;
+			case GameState.ViewingHighScores:
+				HighScoreController.DrawHighScores ();
+				break;
+			}
 
-		switch (CurrentState) {
-		case GameState.ViewingMainMenu:
-			MenuController.DrawMainMenu ();
-			break;
-		case GameState.ViewingGameMenu:
-			MenuController.DrawGameMenu ();
-			break;
-		case GameState.AlteringSettings:
-			MenuController.DrawSettings ();
-			break;
-		case GameState.Deploying:
-			DeploymentController.DrawDeployment ();
-			break;
-		case GameState.Discovering:
-			DiscoveryController.DrawDiscovery ();
-			break;
-		case GameState.EndingGame:
-			EndingGameController.DrawEndOfGame ();
-			break;
-		case GameState.ViewingHighScores:
-			HighScoreController.DrawHighScores ();
-			break;
+			UtilityFunctions.DrawAnimations ();
+
+			SwinGame.RefreshScreen();
 		}
-
-		UtilityFunctions.DrawAnimations();
-
-		SwinGame.RefreshScreen();
 	}
 
 	/// <summary>

@@ -11,8 +11,6 @@ using SwinGameSDK;
 /// </summary>
 static class DiscoveryController
 {
-	//check user pauseStatus
-
 
 	/// <summary>
 	/// Handles input during the discovery phase of the game.
