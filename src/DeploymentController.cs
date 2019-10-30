@@ -131,6 +131,7 @@ static class DeploymentController
 	/// </summary>
 	public static void DrawDeployment()
 	{
+		UtilityFunctions.StartedTimer = false;
 		//use class name call the function and variable- remark
 		UtilityFunctions.DrawField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer, true);
 

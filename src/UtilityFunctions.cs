@@ -260,7 +260,7 @@ static class UtilityFunctions
 		if (UtilityFunctions.startedTimer == false) {
 			UtilityFunctions.gameTime.Start ();
 			UtilityFunctions.startedTimer = true;
-		}
+		} 
 
 		//Draw timer on screen
 		SwinGame.DrawText ("Time :" + TimeSpan.FromSeconds (gameTime.Ticks / 20).ToString (), Color.White, GameResources.GameFont ("Menu"), 700, 50);
