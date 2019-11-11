@@ -30,6 +30,17 @@ static class DiscoveryController
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
 			DoAttack();
 		}
+
+		//check if player click surrender
+		if (UtilityFunctions.IsMouseInRectangle (650, 70, 51, 46) & SwinGame.MouseClicked (MouseButton.LeftButton)) {
+			GameController.HumanPlayer.IsSurrender = true;
+			GameController.EndCurrentState ();
+			GameController.AddNewState (GameState.EndingGame);
+		}
+
+		if (UtilityFunctions.IsMouseInRectangle (550, 70, 51, 46) & SwinGame.MouseClicked (MouseButton.LeftButton)) {
+			KillAllAiShip ();
+		}
 	}
 
 	/// <summary>
@@ -56,6 +67,58 @@ static class DiscoveryController
 	}
 
 	/// <summary>
+	/// Kills all ai ship.
+	/// </summary>
+	public static void KillAllAiShip ()
+	{
+		//get the all ai ship size for the loop
+		int Bssize = GameController.ComputerPlayer.Ship (ShipName.Battleship).Size;
+		int Tugsize = GameController.ComputerPlayer.Ship (ShipName.Tug).Size;
+		int Desize = GameController.ComputerPlayer.Ship (ShipName.Destroyer).Size;
+		int Subize = GameController.ComputerPlayer.Ship (ShipName.Submarine).Size;
+		int Airize = GameController.ComputerPlayer.Ship (ShipName.AircraftCarrier).Size;
+
+		//check the ship direction then chose the atk position
+		if (GameController.ComputerPlayer.Ship (ShipName.Tug).Direction == Direction.LeftRight) {
+			GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.Tug).Row, GameController.ComputerPlayer.Ship (ShipName.Tug).Column);
+		} else {
+			GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.Tug).Row, GameController.ComputerPlayer.Ship (ShipName.Tug).Column);
+		}
+
+		for (int i = 0; i < Desize; i++) {
+			if (GameController.ComputerPlayer.Ship (ShipName.Destroyer).Direction == Direction.LeftRight) {
+				GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.Destroyer).Row, GameController.ComputerPlayer.Ship (ShipName.Destroyer).Column + i);
+			} else {
+				GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.Destroyer).Row + i, GameController.ComputerPlayer.Ship (ShipName.Destroyer).Column);
+			}
+		}
+
+		for (int i = 0; i < Bssize; i++) {
+			if (GameController.ComputerPlayer.Ship (ShipName.Battleship).Direction == Direction.LeftRight) {
+				GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.Battleship).Row, GameController.ComputerPlayer.Ship (ShipName.Battleship).Column + i);
+			} else {
+				GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.Battleship).Row + i, GameController.ComputerPlayer.Ship (ShipName.Battleship).Column);
+			}
+		}
+
+		for (int i = 0; i < Airize; i++) {
+			if (GameController.ComputerPlayer.Ship (ShipName.AircraftCarrier).Direction == Direction.LeftRight) {
+				GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.AircraftCarrier).Row, GameController.ComputerPlayer.Ship (ShipName.AircraftCarrier).Column + i);
+			} else {
+				GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.AircraftCarrier).Row + i, GameController.ComputerPlayer.Ship (ShipName.AircraftCarrier).Column);
+			}
+		}
+
+		for (int i = 0; i < Subize; i++) {
+			if (GameController.ComputerPlayer.Ship (ShipName.Submarine).Direction == Direction.LeftRight) {
+				GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.Submarine).Row, GameController.ComputerPlayer.Ship (ShipName.Submarine).Column + i);
+			} else {
+				GameController.Attack (GameController.ComputerPlayer.Ship (ShipName.Submarine).Row + i, GameController.ComputerPlayer.Ship (ShipName.Submarine).Column);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Draws the game during the attack phase.
 	/// </summary>s
 	public static void DrawDiscovery()
@@ -69,12 +132,12 @@ static class DiscoveryController
 		SwinGame.DrawBitmap (GameResources.GameImage ("Whiteflag"), 650, 70);
 		//Draw whiteflag outline
 		SwinGame.DrawRectangle (Color.Yellow, 650, 70, 51, 46);
-		//check if player click surrender
-		if (UtilityFunctions.IsMouseInRectangle (650, 70, 51, 46) & SwinGame.MouseClicked (MouseButton.LeftButton)) {
-			GameController.HumanPlayer.IsSurrender = true;
-			GameController.EndCurrentState ();
-			GameController.AddNewState (GameState.EndingGame);
-		}
+
+		//Draw whiteflag
+		SwinGame.DrawBitmap (GameResources.GameImage ("KillButton"), 550, 70);
+		//Draw whiteflag outline
+		SwinGame.DrawRectangle (Color.Yellow, 550, 70, 51, 46);
+		
 		//use class name call the function and keycode name
 		if ((SwinGame.KeyDown (KeyCode.vk_LSHIFT) | SwinGame.KeyDown (KeyCode.vk_RSHIFT)) & SwinGame.KeyDown (KeyCode.vk_c)) {
 			UtilityFunctions.DrawField (GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
