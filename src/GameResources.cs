@@ -13,14 +13,18 @@ public static class GameResources
 	{
 		NewFont("ArialLarge", "arial.ttf", 80);
 		NewFont("Courier", "cour.ttf", 14);
+		//for highscore title
+		NewFont ("HighScoreTitle", "ffaccess.ttf", 18);
+		NewFont ("HighScoreText", "ffaccess.ttf", 12);
+
 		NewFont("CourierSmall", "cour.ttf", 8);
-		NewFont("Menu", "ffaccess.ttf", 8);
+		NewFont("Menu", "ffaccess.ttf", 10);
 	}
 
 	private static void LoadImages()
 	{
 		//Backgrounds
-		NewImage("Menu", "main_page.jpg");
+		NewImage("Menu", "backgroundimages.jpg");
 		NewImage("Discovery", "discover.jpg");
 		NewImage("Deploy", "deploy.jpg");
 

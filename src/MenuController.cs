@@ -42,7 +42,7 @@ static class MenuController
 	};
 	private const int MENU_TOP = 575;
 	private const int MENU_LEFT = 30;
-	private const int MENU_GAP = 0;
+	private const int MENU_GAP = 10;
 	private const int BUTTON_WIDTH = 75;
 	private const int BUTTON_HEIGHT = 15;
 	private const int BUTTON_SEP = BUTTON_WIDTH + MENU_GAP;
@@ -126,7 +126,7 @@ static class MenuController
 			}
 
 			if (level > 0) {
-				//none clicked - so end this sub menu
+				//none clicked - so end this sub menus
 				GameController.EndCurrentState();
 			}
 		}
@@ -140,7 +140,7 @@ static class MenuController
 	public static void DrawMainMenu()
 	{
 		//Clears the Screen to Black
-		//SwinGame.DrawText("Main Menu", Color.White, GameFont("ArialLarge"), 50, 50)
+		SwinGame.DrawText ("Battleship", Color.AliceBlue, GameResources.GameFont("ArialLarge"), 40, 250);
 
 		DrawButtons(MAIN_MENU);
 	}
@@ -201,7 +201,7 @@ static class MenuController
 			int btnLeft = 0;
 			btnLeft = MENU_LEFT + BUTTON_SEP * (i + xOffset);
 			//SwinGame.FillRectangle(Color.White, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT)
-			SwinGame.DrawTextLines(_menuStructure [menu] [i], MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, btnLeft + TEXT_OFFSET, btnTop + TEXT_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT);
+			SwinGame.DrawTextLines(_menuStructure [menu] [i], MENU_COLOR, Color.White, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, btnLeft + TEXT_OFFSET, btnTop + TEXT_OFFSET, BUTTON_WIDTH, BUTTON_HEIGHT);
 
 			if (SwinGame.MouseDown(MouseButton.LeftButton) & IsMouseOverMenu(i, level, xOffset)) {
 				SwinGame.DrawRectangle(HIGHLIGHT_COLOR, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
