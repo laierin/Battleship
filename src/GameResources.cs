@@ -37,6 +37,11 @@ public static class GameResources
 		//add new kill button
 		NewImage ("KillButton", "rsz_radarbt.png");
 
+		//mute function buttion
+		NewImage ("Mute", "mute.png");
+		NewImage ("Sound", "soundon.png");
+
+
 		//Ships
 		int i = 0;
 		for (i = 1; i <= 5; i++) {

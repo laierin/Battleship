@@ -16,7 +16,7 @@ static class UtilityFunctions
 	public const int FIELD_TOP = 122;
 	public const int FIELD_LEFT = 349;
 	public const int FIELD_WIDTH = 418;
-
+	public static bool _muted = false;
 	public const int FIELD_HEIGHT = 418;
 
 	public const int MESSAGE_TOP = 548;
@@ -209,6 +209,19 @@ static class UtilityFunctions
 		}
 	}
 
+	public static void Mute ()
+	{
+		//mute_sounds
+			if (_muted == true) {
+				Audio.OpenAudio ();
+				SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
+				_muted = false;
+			} else {
+				Audio.CloseAudio ();
+				_muted = true;
+			}
+		
+	}
 
 	private static string _message;
 	/// <summary>

@@ -75,6 +75,11 @@ static class MenuController
 	public static void HandleMainMenuInput()
 	{
 		HandleMenuInput(MAIN_MENU, 0, 0);
+
+		//click button
+		if (UtilityFunctions.IsMouseInRectangle (650, 50, 51, 46) & SwinGame.MouseClicked (MouseButton.LeftButton)) {
+			UtilityFunctions.Mute ();
+		}
 	}
 
 	/// <summary>
@@ -139,9 +144,19 @@ static class MenuController
 	/// </summary>
 	public static void DrawMainMenu()
 	{
+		
 		//Clears the Screen to Black
 		SwinGame.DrawText ("Battleship", Color.AliceBlue, GameResources.GameFont("ArialLarge"), 40, 250);
+		//Draw Mute Button
+		if (UtilityFunctions._muted == false)
+		{
+			SwinGame.DrawBitmap (GameResources.GameImage ("Sound"), 650, 50);
+		} else {
+			SwinGame.DrawBitmap (GameResources.GameImage ("Mute"), 650, 50);
+		}
 
+		//Draw Mute outline
+		SwinGame.DrawRectangle (Color.White, 650, 50, 51, 46);
 		DrawButtons(MAIN_MENU);
 	}
 
