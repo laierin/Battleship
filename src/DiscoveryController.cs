@@ -11,6 +11,10 @@ using SwinGameSDK;
 /// </summary>
 static class DiscoveryController
 {
+	/// <summary>
+	/// The cheat mode switch.
+	/// </summary>
+	private static bool cheat = false;
 
 	/// <summary>
 	/// Handles input during the discovery phase of the game.
@@ -41,7 +45,17 @@ static class DiscoveryController
 		if (UtilityFunctions.IsMouseInRectangle (550, 70, 51, 46) & SwinGame.MouseClicked (MouseButton.LeftButton)) {
 			KillAllAiShip ();
 		}
+
+		//enable/disable cheat key
+		if (SwinGame.KeyTyped (KeyCode.vk_1)) {
+			if (cheat == false) {
+				cheat = true;
+			} else {
+				cheat = false;
+			}
+		}
 	}
+
 
 	/// <summary>
 	/// Attack the location that the mouse if over.
@@ -119,10 +133,25 @@ static class DiscoveryController
 	}
 
 	/// <summary>
+	/// Displaying the AI ship position cheat function.
+	/// </summary>
+	public static void Display ()
+	{
+		if (cheat == true) {
+			UtilityFunctions.DrawField (GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
+		} else {
+			UtilityFunctions.DrawField (GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, false);
+		}
+	}
+
+	/// <summary>
 	/// Draws the game during the attack phase.
 	/// </summary>s
 	public static void DrawDiscovery()
 	{
+		//call the cheat function
+		Display();
+
 		const int SCORES_LEFT = 172;
 		const int SHOTS_TOP = 157;
 		const int HITS_TOP = 206;
